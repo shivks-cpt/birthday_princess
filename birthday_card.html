@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday & Proposal!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6f2;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            cursor: pointer;
+        }
+        .card {
+            background: linear-gradient(135deg, #ffcce6, #ff99cc);
+            width: 350px;
+            min-height: 500px;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding: 25px;
+            position: relative;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .message {
+            font-size: 20px;
+            color: #ff4d88;
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        .navigation {
+            margin-top: 25px;
+        }
+        .nav-btn {
+            background-color: #ff66b3;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .nav-btn:hover {
+            background-color: #e64a99;
+        }
+        .hidden {
+            display: none;
+        }
+        .proposal {
+            margin-top: 30px;
+        }
+        .proposal button {
+            background-color: #ff80ab;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        .no-btn {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .proposal button:hover {
+            transform: scale(1.05);
+            background-color: #f06292;
+        }
+        .proposal h2{
+            color: #ff4d88;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+        .heart-icon{
+            font-size: 30px;
+            color: #ff4d88;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body onclick="openCard()">
+    <div class="message" id="clickMessage">Tap anywhere for a surprise! 💖</div>
+    <div class="card" id="birthdayCard">
+        <div id="page1">
+            <h1>Happy Birthday, Sweetheart! 🎉</h1>
+            <div class="image-container">
+                <img src="c:\Users\sks_2705\Desktop\Snapchat-1795710118.jpg" alt="Her smile" onclick="openFullImage('your-image1.jpg')">
+            </div>
+            <p>May your day be as lovely as you are. Sending you lots of love! Your smile is the prettiest smile ever seen on earth. ❤️</p>
+            <button class="nav-btn" onclick="nextPage(event)">Next</button>
+        </div>
+        
+        <div id="page2" class="hidden">
+            <h1>You're My Everything! ✨</h1>
+            <div class="image-container">
+                <img src="c:\Users\sks_2705\Desktop\Snapchat-617359841.jpg" alt="Lovely moment" onclick="openFullImage('your-image2.jpg')">
+            </div>
+            <p>Every moment with you is a treasure. You fill my life with joy and light. You are too precious to me. I love you a lot my babygirl my princess.❤️</p>
+            <button class="nav-btn" onclick="prevPage(event)">Previous</button>
+            <button class="nav-btn" onclick="nextPage(event)">Next</button>
+        </div>
+        
+        <div id="page3" class="hidden">
+            <h1>Our Forever Story 📖</h1>
+            <div class="image-container">
+                <img src="c:\Users\sks_2705\Desktop\IMG_20250326_143407_307.jpg" alt="Special memory" onclick="openFullImage('your-image3.jpg')">
+            </div>
+            <p>I want to spend every chapter of my life with you. Here's to many more birthdays!. LOVE YOUUU BABYYYYY</p>
+            <button class="nav-btn" onclick="prevPage(event)">Previous</button>
+            <button class="nav-btn" onclick="nextPage(event)">Next</button>
+        </div>
+        
+        <div id="page4" class="hidden proposal">
+            <h2>Will you make me the happiest person? <span class="heart-icon">💖</span></h2>
+            <button onclick="alert('You made me the happiest person! I love you so much!💖')">Yes, Forever!</button>
+            <button class="no-btn" id="noButton">No, maybe later?</button>
+            <button class="nav-btn" onclick="prevPage(event)">Previous</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentPage = 1;
+        const totalPages = 4;
+        
+        function openCard() {
+            document.getElementById('clickMessage').style.display = 'none';
+            document.getElementById('birthdayCard').style.display = 'block';
+        }
+        
+        function showPage(pageNum) {
+            for (let i = 1; i <= totalPages; i++) {
+                document.getElementById('page' + i).classList.add('hidden');
+            }
+            document.getElementById('page' + pageNum).classList.remove('hidden');
+        }
+        
+        function nextPage(event) {
+            event.stopPropagation();
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+        
+        function prevPage(event) {
+            event.stopPropagation();
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+        
+        function openFullImage(imageSrc) {
+            window.open(imageSrc, '_blank');
+        }
+        
+        document.getElementById("noButton").addEventListener("mouseover", function() {
+            this.style.left = Math.random() * 80 + 10 + "%";
+            this.style.top = Math.random() * 80 + 10 + "%";
+        });
+    </script>
+</body>
+</html>
